@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">646字</span>
+            <span class="post-count">862字</span>
         </span>
     </span>
 
@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -112,7 +112,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> username.github.io</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Hello, World!"</span> &gt; index.html</span><br></pre></td></tr></table></figure>
 <h2 id="Step4-推送"><a href="#Step4-推送" class="headerlink" title="Step4 推送"></a>Step4 推送</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br><span class="line">git commit -m <span class="string">"Initial commit"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <h2 id="Step5-访问页面"><a href="#Step5-访问页面" class="headerlink" title="Step5 访问页面"></a>Step5 访问页面</h2><p>对应页面：https://<span></span>username.github.io/<br>若能打开该页面即可继续向下进行操作。之后个人博客的访问页面也是该页面。</p>
-<h1 id="三-Hexo搭建博客"><a href="#三-Hexo搭建博客" class="headerlink" title="三 Hexo搭建博客"></a>三 Hexo搭建博客</h1>
+<h1 id="三-Hexo搭建博客"><a href="#三-Hexo搭建博客" class="headerlink" title="三 Hexo搭建博客"></a>三 Hexo搭建博客</h1><h2 id="Step1-初始化-Hexo"><a href="#Step1-初始化-Hexo" class="headerlink" title="Step1 初始化 Hexo"></a>Step1 初始化 Hexo</h2><p>打开 Gitbash，用 cd 命令切换到 blog 文件夹，执行下列命令，Hexo 会在新建的文件夹（这里新建名字为 myblog 文件夹）下生成所需要的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myblog</span><br><span class="line"><span class="built_in">cd</span> myblog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>完成上述操作之后，可在电脑对应文件夹（这里是 /blog/myblog/）中看到以下文件以及文件夹：<br>1 _config.yml：网站配置信息文件<br>2 package.json：应用程序信息文件<br>3 scaffolds：模板文件夹<br>4 source：存放用户资源的地方<br>5 themes：主题文件夹，用来生成静态页面</p>
+<h2 id="Step2-本地预览博客"><a href="#Step2-本地预览博客" class="headerlink" title="Step2 本地预览博客"></a>Step2 本地预览博客</h2><p>用 cd 命令切换到 /blog/myblog/，执行下述命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   <span class="comment">#hexo generate 生成</span></span><br><span class="line">hexo s   <span class="comment">#启动本地web服务器</span></span><br></pre></td></tr></table></figure>
+<p>这时，通过http://<span>localhost:4000 ，访问页面。就可以看到，hexo默认带的主题landscap的效果。</span></p>
+<h2 id="Step3-更换主题"><a href="#Step3-更换主题" class="headerlink" title="Step3 更换主题"></a>Step3 更换主题</h2>
       
       <!-- reward -->
       
