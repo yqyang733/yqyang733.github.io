@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">862字</span>
+            <span class="post-count">1k字</span>
         </span>
     </span>
 
@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -118,7 +118,13 @@
 <h2 id="Step2-本地预览博客"><a href="#Step2-本地预览博客" class="headerlink" title="Step2 本地预览博客"></a>Step2 本地预览博客</h2><p>用 cd 命令切换到 /blog/myblog/，执行下述命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   <span class="comment">#hexo generate 生成</span></span><br><span class="line">hexo s   <span class="comment">#启动本地web服务器</span></span><br></pre></td></tr></table></figure>
 <p>这时，通过http://<span>localhost:4000 ，访问页面。就可以看到，hexo默认带的主题landscap的效果。</span></p>
-<h2 id="Step3-更换主题"><a href="#Step3-更换主题" class="headerlink" title="Step3 更换主题"></a>Step3 更换主题</h2>
+<h2 id="Step3-更换主题"><a href="#Step3-更换主题" class="headerlink" title="Step3 更换主题"></a>Step3 更换主题</h2><p>官网主题(模板)： <a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a><span>，在上面选择自己喜欢的模板，进入它对应的git页面，获得clone的链接。（下面以 hexo-theme-ayer 这个主题举例进行演示）</span></p>
+<ol>
+<li>安装主题<br>用 cd 命令切换到 /blog/myblog/，执行下述命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line"><span class="built_in">cd</span> themes</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Shen-Yu/hexo-theme-ayer</span><br><span class="line"><span class="comment"># 国内用户如果速度较慢，可以把github地址替换为：https://gitee.com/shen-yu/hexo-theme-ayer.git</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/shen-yu/hexo-theme-ayer.git</span><br></pre></td></tr></table></figure>
+查看电脑 /blog/myblog/themes/ 文件夹下多了一个 hexo-theme-ayer 或者 ayer 的文件夹。</li>
+<li>启用主题</li>
+</ol>
+
       
       <!-- reward -->
       
