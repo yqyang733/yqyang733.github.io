@@ -62,6 +62,86 @@
     
     
     
+    <article id="post-R函数及使用方法" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/07/R%E5%87%BD%E6%95%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"
+    >R函数及使用方法</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/07/R%E5%87%BD%E6%95%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2020-04-07T09:00:15.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/R/">R</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h4 id="1-查看当前工作目录"><a href="#1-查看当前工作目录" class="headerlink" title="1. 查看当前工作目录"></a>1. 查看当前工作目录</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getwd()</span><br></pre></td></tr></table></figure>
+<h4 id="2-查看当前目录下文件"><a href="#2-查看当前目录下文件" class="headerlink" title="2. 查看当前目录下文件"></a>2. 查看当前目录下文件</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir()</span><br></pre></td></tr></table></figure>
+<h4 id="3-读取-csv-文本文件"><a href="#3-读取-csv-文本文件" class="headerlink" title="3. 读取 csv 文本文件"></a>3. 读取 csv 文本文件</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read.table(file, header = <span class="literal">TRUE</span>, sep = <span class="string">","</span>)</span><br></pre></td></tr></table></figure>
+<p>1.若要读取的文件放置在工作目录之下，file 即为”文件名”，例如：”homework3-1_data.csv”；若不在工作目录之下，应使用绝对路径，例如：”F:/yqyang/homework3-1_data.csv”。<br>2.表示文件是否在第一行包含了变量的逻辑型变量。header = T 时表示读取第一行作为变量。<br>3.表示分开数据的分隔符，默认 sep = “”。读取 csv 文件的话设置 sep = “,”</p>
+<h4 id="4-查看数据行数"><a href="#4-查看数据行数" class="headerlink" title="4. 查看数据行数"></a>4. 查看数据行数</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrow()</span><br></pre></td></tr></table></figure>
+<h4 id="5-查看数据列数"><a href="#5-查看数据列数" class="headerlink" title="5. 查看数据列数"></a>5. 查看数据列数</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncol()</span><br></pre></td></tr></table></figure>
+<h4 id="6-查看数据维度"><a href="#6-查看数据维度" class="headerlink" title="6. 查看数据维度"></a>6. 查看数据维度</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim()</span><br></pre></td></tr></table></figure>
+<h4 id="7-查看数据前-m-行内容"><a href="#7-查看数据前-m-行内容" class="headerlink" title="7. 查看数据前 m 行内容"></a>7. 查看数据前 m 行内容</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(mydataframe, n = m)</span><br></pre></td></tr></table></figure>
+<h4 id="8-生成一组数据的最小，最大值，25-分位数，中位数，75-分位数。"><a href="#8-生成一组数据的最小，最大值，25-分位数，中位数，75-分位数。" class="headerlink" title="8. 生成一组数据的最小，最大值，25%分位数，中位数，75%分位数。"></a>8. 生成一组数据的最小，最大值，25%分位数，中位数，75%分位数。</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(mydataframe$Birthweight)</span><br></pre></td></tr></table></figure>
+<h4 id="9-箱线图"><a href="#9-箱线图" class="headerlink" title="9. 箱线图"></a>9. 箱线图</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">boxplot(x)   <span class="comment">#根据 x 中数据，每一列形成一个箱。</span></span><br><span class="line">boxplot(x[,-<span class="number">1</span>])   <span class="comment">#例如 x 中第一列无效，可用 x[,-1] 将第一列筛去。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,])   <span class="comment">#例如 x 中第二行无效，可用 x[-2,] 将第二行筛去。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], outline = <span class="literal">F</span>)   <span class="comment">#outline = F 将异常值筛掉。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], col = <span class="string">"red"</span>)   <span class="comment">#col = "red" 将箱子颜色设施为红色。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], main=<span class="string">"gene expression Box-Plot"</span>)   <span class="comment">#设置标题。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], xlab=<span class="string">"sample serial number"</span>)   <span class="comment">#设置 x 轴标签。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], ylab=<span class="string">"expression values of each gene"</span>)   <span class="comment">#设置 y 轴标签。</span></span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R-Function/" rel="tag">R Function</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Win10环境下Git搭建及运营Hexo个人博客教程（全）" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
