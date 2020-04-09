@@ -62,6 +62,69 @@
     
     
     
+    <article id="r-R包功能及使用" class="article article-type-r" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/09/R%E5%8C%85%E5%8A%9F%E8%83%BD%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+    >包功能及使用</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/09/R%E5%8C%85%E5%8A%9F%E8%83%BD%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-04-09T06:10:38.000Z" itemprop="datePublished">2020-04-09</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Linux下smina对接流程" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -390,6 +453,9 @@
 <h4 id="9-箱线图"><a href="#9-箱线图" class="headerlink" title="9. 箱线图"></a>9. 箱线图</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">boxplot(x)   <span class="comment">#根据 x 中数据，每一列形成一个箱。</span></span><br><span class="line">boxplot(x[,-<span class="number">1</span>])   <span class="comment">#例如 x 中第一列无效，可用 x[,-1] 将第一列筛去。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,])   <span class="comment">#例如 x 中第二行无效，可用 x[-2,] 将第二行筛去。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], outline = <span class="literal">F</span>)   <span class="comment">#outline = F 将异常值筛掉。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], col = <span class="string">"red"</span>)   <span class="comment">#col = "red" 将箱子颜色设施为红色。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], main=<span class="string">"gene expression Box-Plot"</span>)   <span class="comment">#设置标题。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], xlab=<span class="string">"sample serial number"</span>)   <span class="comment">#设置 x 轴标签。</span></span><br><span class="line">boxpolt(x[-<span class="number">2</span>,], ylab=<span class="string">"expression values of each gene"</span>)   <span class="comment">#设置 y 轴标签。</span></span><br><span class="line">boxpolt(x[,c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">10</span>)])   <span class="comment">#对 1,3,5,10 列做箱线图</span></span><br><span class="line">boxpolt(x[,c(-<span class="number">1</span>,-<span class="number">3</span>,-<span class="number">5</span>)]）  <span class="comment">#删除 1,3,5 列做箱线图</span></span><br></pre></td></tr></table></figure>
 <p>可参考：<br><a href="https://blog.csdn.net/yqyang1/article/details/105372672" target="_blank" rel="noopener" title="Boxplot 对数据特定列数进行作图">Boxplot 对数据特定列数进行作图</a><br><a href="https://blog.csdn.net/yqyang1/article/details/105373187" target="_blank" rel="noopener" title="Boxplot 去除异常值">Boxplot 去除异常值</a><br><a href="https://blog.csdn.net/yqyang1/article/details/105395398" target="_blank" rel="noopener" title="R 中导入csv数据，编辑数据框中异常值并绘制箱线图 Boxplot">R 中导入csv数据，编辑数据框中异常值并绘制箱线图 Boxplot</a></p>
 <h4 id="10-编辑数据框"><a href="#10-编辑数据框" class="headerlink" title="10. 编辑数据框"></a>10. 编辑数据框</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">edit()</span><br></pre></td></tr></table></figure>
+<h4 id="11-预览数据"><a href="#11-预览数据" class="headerlink" title="11. 预览数据"></a>11. 预览数据</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view()</span><br></pre></td></tr></table></figure>
+<h4 id="12-安装包"><a href="#12-安装包" class="headerlink" title="12. 安装包"></a>12. 安装包</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install.packages()</span><br></pre></td></tr></table></figure>
+<h4 id="13-加载包"><a href="#13-加载包" class="headerlink" title="13. 加载包"></a>13. 加载包</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>()</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
