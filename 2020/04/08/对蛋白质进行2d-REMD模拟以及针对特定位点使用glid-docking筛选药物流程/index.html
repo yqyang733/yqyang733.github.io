@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    对蛋白质进行2d-REMD模拟以及针对特定位点使用glid-docking筛选药物流程 |  芫荽
+    对蛋白质进行 2d-REMD 模拟以及针对特定位点使用 glid-docking 筛选药物流程 |  芫荽
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  对蛋白质进行2d-REMD模拟以及针对特定位点使用glid-docking筛选药物流程
+  对蛋白质进行 2d-REMD 模拟以及针对特定位点使用 glid-docking 筛选药物流程
 </h1>
  
 
@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">0字</span>
+            <span class="post-count">427字</span>
         </span>
     </span>
 
@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -80,6 +80,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -92,7 +94,10 @@
       
 
       
-      
+      <h2 id="1-对蛋白进行调研"><a href="#1-对蛋白进行调研" class="headerlink" title="1. 对蛋白进行调研"></a>1. 对蛋白进行调研</h2><p>(1) 查看 pdb 库中该蛋白的所有晶体结构以及相关文献。<br>(2) 查看 pdb 库中该蛋白同源蛋白的晶体结构以及相关文献。</p>
+<h2 id="2-完善蛋白结构"><a href="#2-完善蛋白结构" class="headerlink" title="2. 完善蛋白结构"></a>2. 完善蛋白结构</h2><p>(1) 挑选 pdb 库中分辨率较高以及结构较完整的晶体结构进行后续模拟。<br>(2) 将蛋白结构补充完整。<br>(3) 对蛋白进行加氢。</p>
+<h2 id="3-2d-REMD-模拟前准备"><a href="#3-2d-REMD-模拟前准备" class="headerlink" title="3. 2d-REMD 模拟前准备"></a>3. 2d-REMD 模拟前准备</h2><h3 id="3-1-使用-Gromacs-进行普通-MD-模拟"><a href="#3-1-使用-Gromacs-进行普通-MD-模拟" class="headerlink" title="3.1 使用 Gromacs 进行普通 MD 模拟"></a>3.1 使用 Gromacs 进行普通 MD 模拟</h3><p>(1) gmx_mpi pdb2gmx -f protein.pdb -ignh -o conf.pdb<br>    将PDB坐标文件转换为拓扑文件和力场兼容的坐标文件<br>(2) gmx_mpi editconf -f conf.pdb -o box.gro -c -d 1.0 -princ<br>    编辑模拟盒子<br>(3) gmx_mpi solvate -cp box.gro -cs -o box_water.pdb -p topol.top<br>    体系溶剂化<br>(4) gmx_mpi grompp -f em.mdp -p topol.top -c box_water.pdb -o ions.tpr -maxwarn 1<br>    生成运行输入文件<br>(5) gmx_mpi genion -s ions.tpr -p topol.top -o box_ions.pdb -neutral -conc 0.1<br>    添加离子<br>(6) gmx_mpi grompp -f em.mdp -p topol.top -c box_ions.pdb  -o em.tpr -maxwarn 1<br>    gmx_mpi mdrun -ntomp 32 -v -deffnm em<br>    平衡<br>(7) gmx_mpi grompp -f npt.mdp -c em.gro -p topol.top -o npt.tpr -maxwarn 1<br>    gmx_mpi mdrun -ntomp 32 -v -deffnm npt<br>    升温<br>(8) gmx_mpi grompp -f md.mdp -c npt.gro -p topol.top -o md.tpr -maxwarn 1<br>    nohup gmx_mpi mdrun  -deffnm md -noappend &amp;<br>    进行模拟<br>(9) gmx_mpi trjconv -f md.part0001.xtc -s md.tpr -o md.pdb -pbc mol -ur compact<br>    将轨迹转换为 pdb 格式</p>
+<h3 id="3-2-使用-R-分析模拟结果残基相关性"><a href="#3-2-使用-R-分析模拟结果残基相关性" class="headerlink" title="3.2 使用 R 分析模拟结果残基相关性"></a>3.2 使用 R 分析模拟结果残基相关性</h3><h3 id="3-3-提交-1ns-2d-REMD-查看交换律"><a href="#3-3-提交-1ns-2d-REMD-查看交换律" class="headerlink" title="3.3 提交 1ns 2d-REMD 查看交换律"></a>3.3 提交 1ns 2d-REMD 查看交换律</h3><h2 id="4-2d-REMD-模拟"><a href="#4-2d-REMD-模拟" class="headerlink" title="4. 2d-REMD 模拟"></a>4. 2d-REMD 模拟</h2><h3 id="4-1-Amber-中优化蛋白结构"><a href="#4-1-Amber-中优化蛋白结构" class="headerlink" title="4.1 Amber 中优化蛋白结构"></a>4.1 Amber 中优化蛋白结构</h3><h3 id="4-2-Gromacs-中升温，平衡"><a href="#4-2-Gromacs-中升温，平衡" class="headerlink" title="4.2 Gromacs 中升温，平衡"></a>4.2 Gromacs 中升温，平衡</h3><h3 id="4-3-提交-2d-REMD"><a href="#4-3-提交-2d-REMD" class="headerlink" title="4.3 提交 2d-REMD"></a>4.3 提交 2d-REMD</h3><h2 id="5-分析-2d-REMD-轨迹并寻找药用口袋"><a href="#5-分析-2d-REMD-轨迹并寻找药用口袋" class="headerlink" title="5. 分析 2d-REMD 轨迹并寻找药用口袋"></a>5. 分析 2d-REMD 轨迹并寻找药用口袋</h2><h2 id="6-glid-docking-筛选药物"><a href="#6-glid-docking-筛选药物" class="headerlink" title="6. glid-docking 筛选药物"></a>6. glid-docking 筛选药物</h2>
       
       <!-- reward -->
       
