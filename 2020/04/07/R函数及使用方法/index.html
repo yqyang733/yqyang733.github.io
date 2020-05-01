@@ -60,7 +60,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">650字</span>
+            <span class="post-count">811字</span>
         </span>
     </span>
 
@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -116,7 +116,12 @@
 <h4 id="16-t分布"><a href="#16-t分布" class="headerlink" title="16. t分布"></a>16. t分布</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t.test()</span><br><span class="line">pt()</span><br><span class="line">qt()</span><br></pre></td></tr></table></figure>
 <h4 id="17"><a href="#17" class="headerlink" title="17."></a>17.</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var.test()</span><br></pre></td></tr></table></figure>
 <h4 id="18-正态分布"><a href="#18-正态分布" class="headerlink" title="18. 正态分布"></a>18. 正态分布</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pnorm()</span><br><span class="line">qnorm()</span><br></pre></td></tr></table></figure>
-<h4 id="19"><a href="#19" class="headerlink" title="19."></a>19.</h4>
+<h4 id="19-统计学检验"><a href="#19-统计学检验" class="headerlink" title="19. 统计学检验"></a>19. 统计学检验</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shapiro.test()   <span class="comment"># 正态性检验</span></span><br><span class="line">bartlett.test()   <span class="comment"># 方差齐次检验</span></span><br><span class="line">chisq.test()   <span class="comment"># 卡方检验</span></span><br><span class="line">pchisq(q,df)   <span class="comment"># 根据卡方分布 q 和自由度计算卡方分布的 p-value</span></span><br><span class="line">kruskal.test()   <span class="comment"># KW 检验，多样本检验不符合正态分布情况下使用</span></span><br><span class="line">pairwise.wilcox.test(ALT,group,p.adjust.method = <span class="string">"bonferroni"</span>)   <span class="comment"># KW检验下确定有显著差异时可使用该函数确定哪两组之间有显著差异。</span></span><br></pre></td></tr></table></figure>
+<h4 id="20-输出函数"><a href="#20-输出函数" class="headerlink" title="20. 输出函数"></a>20. 输出函数</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"yqyang"</span></span><br><span class="line">cat(<span class="string">"我是 "</span>,a)   <span class="comment"># 输出字符与变量</span></span><br></pre></td></tr></table></figure>
+<h4 id="21-长宽型数据转换函数"><a href="#21-长宽型数据转换函数" class="headerlink" title="21. 长宽型数据转换函数"></a>21. 长宽型数据转换函数</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack()   <span class="comment"># 不是很清楚用法</span></span><br></pre></td></tr></table></figure>
+<h4 id="22-数据变量名修改函数"><a href="#22-数据变量名修改函数" class="headerlink" title="22. 数据变量名修改函数"></a>22. 数据变量名修改函数</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colnames(data) &lt;- c(<span class="string">"ALT"</span>,<span class="string">"group"</span>)</span><br></pre></td></tr></table></figure>
+
+
       
       <!-- reward -->
       
