@@ -97,18 +97,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="Anaconda-更新之后清理旧版本"><a href="#Anaconda-更新之后清理旧版本" class="headerlink" title="Anaconda 更新之后清理旧版本"></a>Anaconda 更新之后清理旧版本</h1><p>Anaconda 更新之后可以看到 Anaconda 安装目录下面 pkgs 文件夹占了很多内存，里面是各种包的各个使用过的版本及压缩包。比如用 conda update pandas，那在 Lib\site-packages 里会更新到新版本。但 pkgs 里既有新版本，也有旧版本。推测是 conda 先把包下载到 pkgs 里，解压，然后更新到 site-packages 里正式使用。所以 pkgs 里面的内容多是无用的，为节省内存可以使用下述命令删除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda clean -a</span><br></pre></td></tr></table></figure>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -168,18 +156,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h4 id="1-统计字数"><a href="#1-统计字数" class="headerlink" title="1. 统计字数"></a>1. 统计字数</h4><p>打开 Latex 命令行，切换到文件所在位置，输入下列命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texcount practice.tex -inc -incbib -sum -1</span><br></pre></td></tr></table></figure>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -239,16 +215,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -308,16 +274,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -377,16 +333,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -444,54 +390,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h3 id="1-赋值语句"><a href="#1-赋值语句" class="headerlink" title="1. 赋值语句"></a>1. 赋值语句</h3><center>表1：Python3 赋值语句形式</center>
-
-<table>
-<thead>
-<tr>
-<th align="left">运算</th>
-<th align="left">解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">spam = “spam”</td>
-<td align="left">基本形式</td>
-</tr>
-<tr>
-<td align="left">spam, ham = “spam”, “ham”</td>
-<td align="left">元组赋值运算（位置性），,是元组关键元素。</td>
-</tr>
-<tr>
-<td align="left">[spam, ham] = [“spam”, “ham”]</td>
-<td align="left">列表赋值运算（位置性），[]是列表关键元素。</td>
-</tr>
-<tr>
-<td align="left">a, b, c, d = “spam”</td>
-<td align="left">序列赋值运算（通用性）。</td>
-</tr>
-<tr>
-<td align="left">a, *b = “spam”</td>
-<td align="left">扩展的序列解包（Python3.0）</td>
-</tr>
-<tr>
-<td align="left">spam = ham = “spam”</td>
-<td align="left">多目标赋值运算</td>
-</tr>
-<tr>
-<td align="left">spam += 2</td>
-<td align="left">增强赋值运算（相当于 spam = spam + 2）</td>
-</tr>
-</tbody></table>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -549,19 +447,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h4 id="1-绘图包-ggplot2"><a href="#1-绘图包-ggplot2" class="headerlink" title="1. 绘图包-ggplot2"></a>1. 绘图包-ggplot2</h4><p>1) 快速制图-qplot()<br>2) 图片保存-ggsave()</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ggsave(<span class="string">"gg.pdf"</span>, path = <span class="string">"F:"</span>)   <span class="comment">#保存最近一次的图片名为gg.pdf，地址为F盘。</span></span><br></pre></td></tr></table></figure>
-
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -621,16 +506,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -690,16 +565,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -759,16 +624,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
