@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Amber 中使用 tleap 对受体和配体小分子参数化处理 |  芫荽
+    Amber 中金属离子处理 |  芫荽
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -30,7 +30,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-Amber中使用tleap对受体和配体小分子参数化处理" class="article article-type-post" itemscope
+  <article id="post-Amber中金属离子处理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -38,7 +38,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Amber 中使用 tleap 对受体和配体小分子参数化处理
+  Amber 中金属离子处理
 </h1>
  
 
@@ -47,8 +47,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/23/Amber%E4%B8%AD%E4%BD%BF%E7%94%A8tleap%E5%AF%B9%E5%8F%97%E4%BD%93%E5%92%8C%E9%85%8D%E4%BD%93%E5%B0%8F%E5%88%86%E5%AD%90%E5%8F%82%E6%95%B0%E5%8C%96%E5%A4%84%E7%90%86/" class="article-date">
-  <time datetime="2020-05-23T05:10:52.000Z" itemprop="datePublished">2020-05-23</time>
+      <a href="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2020-05-23T07:07:04.000Z" itemprop="datePublished">2020-05-23</time>
 </a>
       
   <div class="article-category">
@@ -62,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">325字</span>
+            <span class="post-count">332字</span>
         </span>
     </span>
 
@@ -82,6 +82,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -94,22 +96,22 @@
       
 
       
-      <p>=============================================<br>Amber版本：Amber16<br>配体电荷计算方法：bcc<br>=============================================<br>(1) 对配体加氢，保证配体的完整性。(可用 Pymol 或者 DS，但一定要检查保证正确性)<br>(2) 受体去氢。<br>(3) 计算配体电荷分布：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antechamber -i ligand.pdb -fi pdb -o ligand.mol2 -fo mol2 -c bcc -nc 1 -pf y</span><br></pre></td></tr></table></figure>
-<ul>
-<li>-nc 指的是配体的总体电荷数，若为零则0，为一则1;可以使用Pymol简单判断-&gt;label-&gt;other properties-&gt;formal charge</li>
-<li>-c 使用bcc的方法计算配体的电荷  </li>
-</ul>
-<p>(4) 生成配体的力场参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parmchk -i ligand.mol2 -f mol2 -o ligand.frcmod -a y</span><br></pre></td></tr></table></figure>
+      <p>============================<br>Amber 版本：Amber16<br>电荷计算方法：bcc<br>============================</p>
+<h4 id="力场中带有的金属离子-以ff03力场为例处理Mg"><a href="#力场中带有的金属离子-以ff03力场为例处理Mg" class="headerlink" title="力场中带有的金属离子(以ff03力场为例处理Mg)"></a>力场中带有的金属离子(以ff03力场为例处理Mg)</h4><p>directory: /home/jawang/software/amber16/dat/leap/lib/ions94.lib<br>(1) 检查 Amber 中金属离子的格式<br><img src="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/1.jpg" alt></p>
+<p>(2) 修改receptor.pdb中的离子相关信息，使Amber中的离子格式与receptor.pdb中的离子&gt;格式一致以便Amber力场能识别receptor.pdb中的离子。<br><img src="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/2.jpg" alt><br>修改为：<br><img src="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/3.jpg" alt></p>
+<p>(3) 处理配体，tleap生成prmtop和inpcrd即可。</p>
+<h4 id="力场中没有的金属离子-以ff03力场为例处理Ca"><a href="#力场中没有的金属离子-以ff03力场为例处理Ca" class="headerlink" title="力场中没有的金属离子(以ff03力场为例处理Ca)"></a>力场中没有的金属离子(以ff03力场为例处理Ca)</h4><p>(1) 思路是把金属离子当成配体来处理<br>(2) 先从receptor.pdb中将金属离子取出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep CA receptor.pdb &gt; Ca.pdb</span><br></pre></td></tr></table></figure>
 
-<p>(5) tleap 中参数化受体与配体</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tleap -f tleap.in</span><br></pre></td></tr></table></figure>
-<p>tleap.in 内容为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">source oldff/leaprc.ff03</span><br><span class="line">source leaprc.gaff</span><br><span class="line">UNK=loadmol2 ligand.mol2  # UNK 必须与 ligand.pdb 中的残基名字一致</span><br><span class="line">loadamberparams ligand.frcmod   # 加载配体力场</span><br><span class="line">list    # 查看是否将配体正确加载</span><br><span class="line">receptor=loadpdb receptor.pdb</span><br><span class="line">ligand=loadmol2 ligand.mol2</span><br><span class="line">complex=combine &#123;receptor ligand&#125;</span><br><span class="line">saveamberparm receptor receptor.prmtop receptor.inpcrd</span><br><span class="line">saveamberparm ligand ligand.prmtop ligand.inpcrd</span><br><span class="line">saveamberparm complex complex.prmtop complex.inpcrd</span><br><span class="line">check complex  # 检查复合物是否正确，是否有fatal error</span><br><span class="line">charge complex</span><br><span class="line">addions complex Na+/Cl- n</span><br><span class="line">solvatebox complex TIP3PBOX 9.0</span><br><span class="line">saveamberparm complex complex_solvated.prmtop complex_solvated.inpcrd</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>(3) 计算金属离子电荷</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antechamber -i Ca.pdb -fi pdb -o Ca.mol2 -fo mol2 -at amber -pf y</span><br></pre></td></tr></table></figure>
 
-<p>(6) Pymol 中检查生成的 prmtop 和 inpcrd 文件是否正确。check.pdb 的可视化正常的话说明中间过程生成的受体配体参数是正确的。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ambpdb -p complex_solvated.prmtop &lt; complex_solvated.inpcrd &gt; check.pdb</span><br></pre></td></tr></table></figure>
+<p>(4) 生成金属离子的力场参数     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parmchk -i Ca.mol2 -f mol2 -o Ca.frcmod -a y</span><br></pre></td></tr></table></figure>
+
+<p>(5) 修改 Ca.frcmod 中的 MASS 和 NONBON<br><img src="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/4.jpg" alt><br>修改为：<br><img src="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/5.jpg" alt>     </p>
+<p>(6) 在 tleap 中记得加载金属离子的参数，用 tleap 生成 prmtop 和 inpcrd。     </p>
+<h4 id="多个金属离子的处理"><a href="#多个金属离子的处理" class="headerlink" title="多个金属离子的处理"></a>多个金属离子的处理</h4><p>思路是多个金属离子可以给金属离子起不同的名字并将其当作配体一个一个的加入蛋白，千万不能一次加入多个金属离子，否则有可能加入双倍的金属离子，其中有一半在坐标原点。</p>
 
       
       <!-- reward -->
@@ -175,7 +177,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/23/Amber%E4%B8%AD%E4%BD%BF%E7%94%A8tleap%E5%AF%B9%E5%8F%97%E4%BD%93%E5%92%8C%E9%85%8D%E4%BD%93%E5%B0%8F%E5%88%86%E5%AD%90%E5%8F%82%E6%95%B0%E5%8C%96%E5%A4%84%E7%90%86/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -193,19 +195,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/05/23/Amber%E4%B8%AD%E9%87%91%E5%B1%9E%E7%A6%BB%E5%AD%90%E5%A4%84%E7%90%86/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Amber 中金属离子处理
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/04/24/conda%E7%AE%A1%E7%90%86%E5%8C%85%E6%95%99%E7%A8%8B/" class="article-nav-link">
+      <a href="/2020/05/23/Amber%E4%B8%AD%E4%BD%BF%E7%94%A8tleap%E5%AF%B9%E5%8F%97%E4%BD%93%E5%92%8C%E9%85%8D%E4%BD%93%E5%B0%8F%E5%88%86%E5%AD%90%E5%8F%82%E6%95%B0%E5%8C%96%E5%A4%84%E7%90%86/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">conda 管理包教程</div>
+        <div class="article-nav-title">Amber 中使用 tleap 对受体和配体小分子参数化处理</div>
       </a>
     
   </nav>
