@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">232</span>
+            <span class="post-count">333</span>
         </span>
     </span>
 
@@ -103,7 +103,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done  </span><br><span class="line"><span class="meta">#</span><span class="bash"> -i 代表对文件本身进行修改</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1s代表是第一行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*代表第一行的所有内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*/`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`/ 代表将第一行所有内容替换成`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`。</span></span><br></pre></td></tr></table></figure>
 <p>2.sed命令单双引号的区别。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i '1s/.*/`basename $&#123;i&#125; -opt.sdf`/' $&#123;i&#125;;done</span><br><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done</span><br><span class="line"><span class="meta">#</span><span class="bash"> 上述两条命令执行的结果是不一样的。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 双引号内可以应用变量，则双引号内会替换成变量的名字。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 单引号内不能用变量，则单引号内直接替换成单引号内字符本身。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 仅限于sed。</span></span><br></pre></td></tr></table></figure>
-<p>3.sed去除空格-正则表达式应用<br>说明：</p>
+<p>3.sed去除空格-正则表达式应用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed s/[[:space:]]//g list-id-score &gt;&gt; list-id-score-1    # 去除所有空格</span><br><span class="line"><span class="meta">#</span><span class="bash"> 命令详解：s代表的是替换字符串，[[:space:]]代表所有类型的空格，g代表进行全局替换，无g则只替代每行第一个。</span></span><br><span class="line">sed 's/^[ \t]*//g' test.txt &gt;&gt; test_1.txt    # 去除行首空格，^代表行首。</span><br><span class="line">sed 's/[ \t]*$//g' test.txt &gt;&gt; test_1.txt    # 去除行末空格，$代表行末。</span><br></pre></td></tr></table></figure>
+
+
  
       <!-- reward -->
       
@@ -178,6 +181,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2020/10/21/awk/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            awk
+          
+        </div>
+      </a>
     
     
       <a href="/2020/10/20/basename/" class="article-nav-link">
