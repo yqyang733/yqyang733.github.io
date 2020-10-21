@@ -566,7 +566,7 @@
 
     
     <article
-  id="post-Python"
+  id="post-Python帮助文档"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -577,26 +577,28 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/Python/"
-    >Python</a> 
+  <a class="article-title" href="/2020/10/20/Python%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/"
+    >Python帮助文档</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/10/20/Python/" class="article-date">
+      <a href="/2020/10/20/Python%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" class="article-date">
   <time datetime="2020-10-20T13:17:19.000Z" itemprop="datePublished">2020-10-20</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
+    <a class="article-category-link" href="/categories/Python/">Python</a> / <a class="article-category-link" href="/categories/Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">Python基础知识</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <h1 id="查看帮助文档"><a href="#查看帮助文档" class="headerlink" title="查看帮助文档"></a>查看帮助文档</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dir()    <span class="comment"># 列出对象的所有成员，帮助查找方法和变量。</span></span><br><span class="line">help()    <span class="comment"># 打印指定方法、函数、变量、类的说明信息。</span></span><br><span class="line"><span class="comment">#  __doc__成员查看对象的帮助文档</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 举个栗子</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">print(<span class="string">"打印os的所有成员"</span>)</span><br><span class="line">dir(os)</span><br><span class="line">print(<span class="string">"打印sys的说明信息"</span>)</span><br><span class="line">help(<span class="string">"sys"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助文档</span></span><br><span class="line">print(<span class="string">"查看模块的说明"</span>)</span><br><span class="line">print(os.__doc__)</span><br><span class="line">print(<span class="string">"查看方法的说明"</span>)</span><br><span class="line">print(os.sys.__doc__)</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
