@@ -139,6 +139,311 @@
     
     
     <article
+  id="post-Smiles经力场优化生成3D构型"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/04/Smiles%E7%BB%8F%E5%8A%9B%E5%9C%BA%E4%BC%98%E5%8C%96%E7%94%9F%E6%88%903D%E6%9E%84%E5%9E%8B/"
+    >Smiles经力场优化生成3D构型</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/04/Smiles%E7%BB%8F%E5%8A%9B%E5%9C%BA%E4%BC%98%E5%8C%96%E7%94%9F%E6%88%903D%E6%9E%84%E5%9E%8B/" class="article-date">
+  <time datetime="2020-11-04T06:58:14.000Z" itemprop="datePublished">2020-11-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a> / <a class="article-category-link" href="/categories/Python/Python%E8%84%9A%E6%9C%AC/">Python脚本</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Smiles转2Dsdf文件"><a href="#Smiles转2Dsdf文件" class="headerlink" title="Smiles转2Dsdf文件"></a>Smiles转2Dsdf文件</h1><p>1.先整理名称与对应的Smiles文本文件<br>2.使用Canvas根据Smiles生成2D文件<br>Canvas能识别的格式应该是smi为后缀的文件，并且文件的格式为 Smiles “名称”。将smi文件导入Canvas导出成一个sdf文件。然后再使用薛定谔将其分割成单个sdf文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell</span></span><br><span class="line">awk '&#123;print $2" \""$1"\""&#125;' 57.smi &gt;&gt; 57_4.smi</span><br></pre></td></tr></table></figure>
+
+<h1 id="sdf文件转换成mol文件"><a href="#sdf文件转换成mol文件" class="headerlink" title="sdf文件转换成mol文件"></a>sdf文件转换成mol文件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell</span></span><br><span class="line">for i in `ls`;do obabel -isdf $&#123;i&#125; -omol -O ../53mol/`basename $&#123;i&#125; .sdf`.mol;done</span><br></pre></td></tr></table></figure>
+
+<h1 id="RDKit-MMFF94力场优化mol文件生成3D结构"><a href="#RDKit-MMFF94力场优化mol文件生成3D结构" class="headerlink" title="RDKit MMFF94力场优化mol文件生成3D结构"></a>RDKit MMFF94力场优化mol文件生成3D结构</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="keyword">import</span> rdkit </span><br><span class="line"><span class="keyword">from</span> rdkit <span class="keyword">import</span> Chem</span><br><span class="line"><span class="keyword">from</span> rdkit.Chem <span class="keyword">import</span> AllChem</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">pathmol = <span class="string">"temp/53mol/"</span></span><br><span class="line">pathmolrdkit = <span class="string">"temp/53mol_rdkit/"</span></span><br><span class="line"></span><br><span class="line">files= os.listdir(pathmol)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		m = Chem.MolFromMolFile(pathmol+file) <span class="comment"># 读取mol文件</span></span><br><span class="line">		m2=Chem.AddHs(m) <span class="comment"># 加氢</span></span><br><span class="line">		AllChem.EmbedMolecule(m2)</span><br><span class="line">		AllChem.MMFFOptimizeMolecule(m2) <span class="comment"># 优化</span></span><br><span class="line">		m3= Chem.RemoveHs(m2) <span class="comment"># 去氢</span></span><br><span class="line">		print(Chem.MolToMolBlock(m3),file=open(pathmolrdkit+file,<span class="string">'w+'</span>)) <span class="comment"># 输出</span></span><br><span class="line">	<span class="keyword">except</span>:</span><br><span class="line">		print(file)</span><br></pre></td></tr></table></figure>
+
+<h1 id="mol文件转换成mol2文件"><a href="#mol文件转换成mol2文件" class="headerlink" title="mol文件转换成mol2文件"></a>mol文件转换成mol2文件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell</span></span><br><span class="line">for i in `ls`;do obabel -imol $&#123;i&#125; -omol2 -O ../53mol2/`basename $&#123;i&#125; .mol`.mol2;done</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-爬虫学习一"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/04/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%80/"
+    >爬虫学习一</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/04/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%80/" class="article-date">
+  <time datetime="2020-11-04T05:15:56.000Z" itemprop="datePublished">2020-11-04</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-结合自由能计算"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/02/%E7%BB%93%E5%90%88%E8%87%AA%E7%94%B1%E8%83%BD%E8%AE%A1%E7%AE%97/"
+    >结合自由能计算</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/02/%E7%BB%93%E5%90%88%E8%87%AA%E7%94%B1%E8%83%BD%E8%AE%A1%E7%AE%97/" class="article-date">
+  <time datetime="2020-11-02T09:55:33.000Z" itemprop="datePublished">2020-11-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Molecular-Dynamics/">Molecular Dynamics</a> / <a class="article-category-link" href="/categories/Molecular-Dynamics/Amber/">Amber</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Gromacs动画制作"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/31/Gromacs%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/"
+    >Gromacs动画制作</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/31/Gromacs%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/" class="article-date">
+  <time datetime="2020-10-31T14:14:04.000Z" itemprop="datePublished">2020-10-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Molecular-Dynamics/">Molecular Dynamics</a> / <a class="article-category-link" href="/categories/Molecular-Dynamics/Gromacs/">Gromacs</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Gromacs动力学轨迹处理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/31/Gromacs%E5%8A%A8%E5%8A%9B%E5%AD%A6%E8%BD%A8%E8%BF%B9%E5%A4%84%E7%90%86/"
+    >Gromacs动力学轨迹处理</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/31/Gromacs%E5%8A%A8%E5%8A%9B%E5%AD%A6%E8%BD%A8%E8%BF%B9%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2020-10-31T14:13:38.000Z" itemprop="datePublished">2020-10-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Molecular-Dynamics/">Molecular Dynamics</a> / <a class="article-category-link" href="/categories/Molecular-Dynamics/Gromacs/">Gromacs</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-霹雳布袋戏百度云资源列表"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/25/%E9%9C%B9%E9%9B%B3%E5%B8%83%E8%A2%8B%E6%88%8F%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90%E5%88%97%E8%A1%A8/"
+    >霹雳布袋戏百度云资源列表</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/25/%E9%9C%B9%E9%9B%B3%E5%B8%83%E8%A2%8B%E6%88%8F%E7%99%BE%E5%BA%A6%E4%BA%91%E8%B5%84%E6%BA%90%E5%88%97%E8%A1%A8/" class="article-date">
+  <time datetime="2020-10-25T11:31:14.000Z" itemprop="datePublished">2020-10-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B8%83%E8%A2%8B%E6%88%8F/">布袋戏</a> / <a class="article-category-link" href="/categories/%E5%B8%83%E8%A2%8B%E6%88%8F/%E9%9C%B9%E9%9B%B3%E5%B8%83%E8%A2%8B%E6%88%8F/">霹雳布袋戏</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>***需要以下资源，联系微信(baishijinglun12)或QQ(1821074995)***</strong></p>
+<p>================================================================================<br>霹雳天命之战祸邪神 (国语) 20集全 超清<br>================================================================================</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-Linux与Windows文件转换"
   class="article article-type-post"
   itemscope
@@ -340,315 +645,6 @@
 
 <p>3.根据数据计算虚筛库分子量分布情况-if语句。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">file=MW.txt</span><br><span class="line">echo "Molecular Weight" &gt;distribution.txt</span><br><span class="line">n1=`awk '&#123;if ($1&gt;=1 &amp;&amp; $1&lt;=50) print $0&#125;' $file|wc -l`</span><br><span class="line">n2=`awk '&#123;if ($1&gt;50 &amp;&amp; $1&lt;=100) print $0&#125;' $file|wc -l`</span><br><span class="line">n3=`awk '&#123;if ($1&gt;100 &amp;&amp; $1&lt;=150) print $0&#125;' $file|wc -l`</span><br><span class="line">n4=`awk '&#123;if ($1&gt;150 &amp;&amp; $1&lt;=200) print $0&#125;' $file|wc -l`</span><br><span class="line">n5=`awk '&#123;if ($1&gt;200 &amp;&amp; $1&lt;=250) print $0&#125;' $file|wc -l`</span><br><span class="line">echo "Total $total" &gt;&gt;distribution.txt</span><br><span class="line">echo "[1,50] $n1" &gt;&gt;distribution.txt</span><br><span class="line">echo "(50,100] $n2" &gt;&gt;distribution.txt</span><br><span class="line">echo "(100,150] $n3" &gt;&gt;distribution.txt</span><br><span class="line">echo "(150,200] $n4" &gt;&gt;distribution.txt</span><br><span class="line">echo "(200,250] $n5" &gt;&gt;distribution.txt</span><br><span class="line">totol=`expr $n1 + $n2 + $n3 + $n4 + $n5 + $n6 + $n7 + $n8 + $n9 + $n10`</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-sed"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/sed/"
-    >sed</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/sed/" class="article-date">
-  <time datetime="2020-10-20T13:56:43.000Z" itemprop="datePublished">2020-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>***行处理***</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>1.批量修改一个目录下面所有文件的第一行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done  </span><br><span class="line"><span class="meta">#</span><span class="bash"> -i 代表对文件本身进行修改</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1s代表是第一行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*代表第一行的所有内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*/`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`/ 代表将第一行所有内容替换成`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`。</span></span><br></pre></td></tr></table></figure>
-<p>2.sed命令单双引号的区别。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i '1s/.*/`basename $&#123;i&#125; -opt.sdf`/' $&#123;i&#125;;done</span><br><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done</span><br><span class="line"><span class="meta">#</span><span class="bash"> 上述两条命令执行的结果是不一样的。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 双引号内可以应用变量，则双引号内会替换成变量的名字。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 单引号内不能用变量，则单引号内直接替换成单引号内字符本身。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 仅限于sed。</span></span><br></pre></td></tr></table></figure>
-<p>3.sed去除空格-正则表达式应用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed s/[[:space:]]//g list-id-score &gt;&gt; list-id-score-1    # 去除所有空格</span><br><span class="line"><span class="meta">#</span><span class="bash"> 命令详解：s代表的是替换字符串，[[:space:]]代表所有类型的空格，g代表进行全局替换，无g则只替代每行第一个。</span></span><br><span class="line">sed 's/^[ \t]*//g' test.txt &gt;&gt; test_1.txt    # 去除行首空格，^代表行首。</span><br><span class="line">sed 's/[ \t]*$//g' test.txt &gt;&gt; test_1.txt    # 去除行末空格，$代表行末。</span><br></pre></td></tr></table></figure>
-
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-basename"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/basename/"
-    >basename</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/basename/" class="article-date">
-  <time datetime="2020-10-20T13:43:33.000Z" itemprop="datePublished">2020-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>***获取路径中的文件名或路径名、去掉文件的后缀名***</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>1.例1</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename /home/mcdx/test.sh # 返回test.sh</span><br></pre></td></tr></table></figure>
-<p>2.例2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename /home/mcdx/test.sh .sh # 返回test</span><br></pre></td></tr></table></figure>
-<p>3.例3</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename test.sh .sh # 返回test</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Shell脚本"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/Shell%E8%84%9A%E6%9C%AC/"
-    >Shell脚本</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/Shell%E8%84%9A%E6%9C%AC/" class="article-date">
-  <time datetime="2020-10-20T13:20:07.000Z" itemprop="datePublished">2020-10-20</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Shell命令行"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C/"
-    >Shell命令行</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="article-date">
-  <time datetime="2020-10-20T13:19:47.000Z" itemprop="datePublished">2020-10-20</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Python帮助文档"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/Python%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/"
-    >Python帮助文档</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/Python%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" class="article-date">
-  <time datetime="2020-10-20T13:17:19.000Z" itemprop="datePublished">2020-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a> / <a class="article-category-link" href="/categories/Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">Python基础知识</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="查看帮助文档"><a href="#查看帮助文档" class="headerlink" title="查看帮助文档"></a>查看帮助文档</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dir()    <span class="comment"># 列出对象的所有成员，帮助查找方法和变量。</span></span><br><span class="line">help()    <span class="comment"># 打印指定方法、函数、变量、类的说明信息。</span></span><br><span class="line"><span class="comment">#  __doc__成员查看对象的帮助文档</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 举个栗子</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">print(<span class="string">"打印os的所有成员"</span>)</span><br><span class="line">dir(os)</span><br><span class="line">print(<span class="string">"打印sys的说明信息"</span>)</span><br><span class="line">help(<span class="string">"sys"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助文档</span></span><br><span class="line">print(<span class="string">"查看模块的说明"</span>)</span><br><span class="line">print(os.__doc__)</span><br><span class="line">print(<span class="string">"查看方法的说明"</span>)</span><br><span class="line">print(os.sys.__doc__)</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-考公"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/20/%E8%80%83%E5%85%AC/"
-    >考公</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/20/%E8%80%83%E5%85%AC/" class="article-date">
-  <time datetime="2020-10-20T12:57:53.000Z" itemprop="datePublished">2020-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%80%83%E5%85%AC/">考公</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
       <!-- reward -->
       
     </div>
