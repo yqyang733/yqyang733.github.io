@@ -139,6 +139,135 @@
     
     
     <article
+  id="post-du"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/21/du/"
+    >du</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/21/du/" class="article-date">
+  <time datetime="2020-10-21T10:50:14.000Z" itemprop="datePublished">2020-10-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
+  </div>
+   
+    </div>
+       
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-sort"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/21/sort/"
+    >sort</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/21/sort/" class="article-date">
+  <time datetime="2020-10-21T10:39:50.000Z" itemprop="datePublished">2020-10-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
+  </div>
+   
+    </div>
+       
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-awk"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/21/awk/"
+    >awk</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/21/awk/" class="article-date">
+  <time datetime="2020-10-21T04:31:14.000Z" itemprop="datePublished">2020-10-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
+  </div>
+   
+    </div>
+       
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-sed"
   class="article article-type-post"
   itemscope
@@ -166,23 +295,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <p>***行处理***</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>1.批量修改一个目录下面所有文件的第一行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done  </span><br><span class="line"><span class="meta">#</span><span class="bash"> -i 代表对文件本身进行修改</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1s代表是第一行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*代表第一行的所有内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .*/`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`/ 代表将第一行所有内容替换成`basename <span class="variable">$&#123;i&#125;</span> -opt.sdf`。</span></span><br></pre></td></tr></table></figure>
-<p>2.sed命令单双引号的区别。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i in `ls`;do sed -i '1s/.*/`basename $&#123;i&#125; -opt.sdf`/' $&#123;i&#125;;done</span><br><span class="line">for i in `ls`;do sed -i "1s/.*/`basename $&#123;i&#125; -opt.sdf`/" $&#123;i&#125;;done</span><br><span class="line"><span class="meta">#</span><span class="bash"> 上述两条命令执行的结果是不一样的。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 双引号内可以应用变量，则双引号内会替换成变量的名字。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 单引号内不能用变量，则单引号内直接替换成单引号内字符本身。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 仅限于sed。</span></span><br></pre></td></tr></table></figure>
-<p>3.sed去除空格-正则表达式应用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed s/[[:space:]]//g list-id-score &gt;&gt; list-id-score-1    # 去除所有空格</span><br><span class="line"><span class="meta">#</span><span class="bash"> 命令详解：s代表的是替换字符串，[[:space:]]代表所有类型的空格，g代表进行全局替换，无g则只替代每行第一个。</span></span><br><span class="line">sed 's/^[ \t]*//g' test.txt &gt;&gt; test_1.txt    # 去除行首空格，^代表行首。</span><br><span class="line">sed 's/[ \t]*$//g' test.txt &gt;&gt; test_1.txt    # 去除行末空格，$代表行末。</span><br></pre></td></tr></table></figure>
-
-
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -225,20 +338,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <p>***获取路径中的文件名或路径名、去掉文件的后缀名***</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>1.例1</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename /home/mcdx/test.sh # 返回test.sh</span><br></pre></td></tr></table></figure>
-<p>2.例2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename /home/mcdx/test.sh .sh # 返回test</span><br></pre></td></tr></table></figure>
-<p>3.例3</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basename test.sh .sh # 返回test</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -277,14 +377,7 @@
   <time datetime="2020-10-20T13:20:07.000Z" itemprop="datePublished">2020-10-20</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-   
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -323,14 +416,7 @@
   <time datetime="2020-10-20T13:19:47.000Z" itemprop="datePublished">2020-10-20</time>
 </a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-   
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -373,16 +459,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="查看帮助文档"><a href="#查看帮助文档" class="headerlink" title="查看帮助文档"></a>查看帮助文档</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dir()    <span class="comment"># 列出对象的所有成员，帮助查找方法和变量。</span></span><br><span class="line">help()    <span class="comment"># 打印指定方法、函数、变量、类的说明信息。</span></span><br><span class="line"><span class="comment">#  __doc__成员查看对象的帮助文档</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 举个栗子</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">print(<span class="string">"打印os的所有成员"</span>)</span><br><span class="line">dir(os)</span><br><span class="line">print(<span class="string">"打印sys的说明信息"</span>)</span><br><span class="line">help(<span class="string">"sys"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助文档</span></span><br><span class="line">print(<span class="string">"查看模块的说明"</span>)</span><br><span class="line">print(os.__doc__)</span><br><span class="line">print(<span class="string">"查看方法的说明"</span>)</span><br><span class="line">print(os.sys.__doc__)</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -425,14 +502,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-   
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -475,185 +545,7 @@
   </div>
    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h1><h2 id="Cartoon透明度"><a href="#Cartoon透明度" class="headerlink" title="Cartoon透明度"></a>Cartoon透明度</h2><p>语法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set cartoon_transparency, <span class="number">0.5</span>, &lt;object&gt;  <span class="comment"># 50%透明度, &lt;object&gt;是对象的名字</span></span><br><span class="line">set cartoon_transparency, <span class="number">0.5</span>, &lt;sele&gt;  <span class="comment"># 50%透明度, &lt;sele&gt;是选择的部分</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="获取坐标信息"><a href="#获取坐标信息" class="headerlink" title="获取坐标信息"></a>获取坐标信息</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line">centerofmass sele  <span class="comment"># pymol选中想要知道坐标的原子</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line">xyz = cmd.get_coords(<span class="string">'sele'</span>, <span class="number">1</span>)  <span class="comment"># pymol选中想要知道坐标的原子</span></span><br><span class="line">print(xyz)</span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-蛋白与多分子混合体系动力学模拟"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/16/%E8%9B%8B%E7%99%BD%E4%B8%8E%E5%A4%9A%E5%88%86%E5%AD%90%E6%B7%B7%E5%90%88%E4%BD%93%E7%B3%BB%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E6%8B%9F/"
-    >蛋白与多分子混合体系动力学模拟</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/16/%E8%9B%8B%E7%99%BD%E4%B8%8E%E5%A4%9A%E5%88%86%E5%AD%90%E6%B7%B7%E5%90%88%E4%BD%93%E7%B3%BB%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E6%8B%9F/" class="article-date">
-  <time datetime="2020-10-16T14:22:31.000Z" itemprop="datePublished">2020-10-16</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Molecular-Dynamics/">Molecular Dynamics</a> / <a class="article-category-link" href="/categories/Molecular-Dynamics/Amber/">Amber</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-grep"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/15/grep/"
-    >grep</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/15/grep/" class="article-date">
-  <time datetime="2020-10-15T11:13:02.000Z" itemprop="datePublished">2020-10-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/%E5%91%BD%E4%BB%A4/">命令</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>***在文件中搜索匹配正则表达式的文本并且打印在屏幕上***</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h1 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h1><p>1.-w 精确匹配，显示全字符合的行</p>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>1.在test.txt中搜索出所有含ICV100字段的行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep ICV100 test.txt</span><br></pre></td></tr></table></figure>
-<p>在test.txt中搜索出所有含$$$$字段的行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep '\$\$\$\$' test.txt</span><br></pre></td></tr></table></figure>
-
-<p>2.精确匹配，搜索出仅含有ICV100的字段，而不能打印出ICV1000的字段，需要精确匹配。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -w ICV100 test.txt</span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-OpenBabel基础操作"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/10/13/OpenBabel%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/"
-    >Open Babel 基础操作</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/10/13/OpenBabel%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" class="article-date">
-  <time datetime="2020-10-13T05:40:28.000Z" itemprop="datePublished">2020-10-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a> / <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6/Openbabel/">Openbabel</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="转换文件格式"><a href="#转换文件格式" class="headerlink" title="转换文件格式"></a>转换文件格式</h1><p>1.例如sdf转换成mol2文件，不能直接改后缀名，需要进行格式转换。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obabel -isdf test.sdf -omol2 -O ./test/test.mol2</span><br></pre></td></tr></table></figure>
-
-<h1 id="计算二维相似性"><a href="#计算二维相似性" class="headerlink" title="计算二维相似性"></a>计算二维相似性</h1><p>1.计算两个单个sdf文件之间的二维相似性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obabel test1.sdf test2.sdf -ofpt</span><br></pre></td></tr></table></figure>
-
-<p>2.计算一个单个分子(smi)与另外很多分子(sdf)之间的二维相似性，其中result中的格式是”&gt;ICV225 Tanimoto from first mol = 0.0761905”，其中ICV225是分子文件内部的名字。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obabel test.smi multi_test.sdf -ofpt &gt;&gt; result.txt</span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
 
     <!-- copyright -->
     
@@ -674,7 +566,7 @@
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>
