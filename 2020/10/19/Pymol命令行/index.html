@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">94</span>
+            <span class="post-count">213</span>
         </span>
     </span>
 
@@ -102,7 +102,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set cartoon_transparency, <span class="number">0.5</span>, &lt;object&gt;  <span class="comment"># 50%透明度, &lt;object&gt;是对象的名字</span></span><br><span class="line">set cartoon_transparency, <span class="number">0.5</span>, &lt;sele&gt;  <span class="comment"># 50%透明度, &lt;sele&gt;是选择的部分</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="获取坐标信息"><a href="#获取坐标信息" class="headerlink" title="获取坐标信息"></a>获取坐标信息</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line">centerofmass sele  <span class="comment"># pymol选中想要知道坐标的原子</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line">xyz = cmd.get_coords(<span class="string">'sele'</span>, <span class="number">1</span>)  <span class="comment"># pymol选中想要知道坐标的原子</span></span><br><span class="line">print(xyz)</span><br></pre></td></tr></table></figure>
- 
+<h1 id="Ball-and-Stick"><a href="#Ball-and-Stick" class="headerlink" title="Ball and Stick"></a>Ball and Stick</h1><p>1.图形界面在 A -&gt; Preset -&gt; ball and stick, 但图形界面无法对单一对象进行个性化操作，则需要命令行对对象进行个性化设置。<br>2.命令行如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pymol</span></span><br><span class="line"></span><br><span class="line">set stick_ball, on  <span class="comment"># 开启球棍模型，原子显示为球形，键显示为棍状</span></span><br><span class="line">set stick_ball_ratio, <span class="number">2</span>, object,  <span class="comment"># 设置object中球棍的比例</span></span><br><span class="line">set_bond stick_radius, <span class="number">0.14</span>, object,  <span class="comment"># 设置object中棍的粗细</span></span><br><span class="line">set sphere_scale, <span class="number">0.25</span>, sele  <span class="comment"># 设置选中的原子球的大小</span></span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>

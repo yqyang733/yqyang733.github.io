@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Shell中if的各种判断语句 |  
+    字符串 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Shell中if的各种判断语句"
+  id="post-字符串"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,18 +55,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Shell中if的各种判断语句
+  字符串
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/11/07/Shell%E4%B8%ADif%E7%9A%84%E5%90%84%E7%A7%8D%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/" class="article-date">
-  <time datetime="2020-11-07T13:28:29.000Z" itemprop="datePublished">2020-11-07</time>
+      <a href="/2020/11/08/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
+  <time datetime="2020-11-08T11:51:32.000Z" itemprop="datePublished">2020-11-08</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a> / <a class="article-category-link" href="/categories/Linux/Shell%E8%84%9A%E6%9C%AC/">Shell脚本</a>
+    <a class="article-category-link" href="/categories/Python/">Python</a> / <a class="article-category-link" href="/categories/Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">Python基础知识</a>
   </div>
   
 <div class="word_count">
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">50</span>
+            <span class="post-count">436</span>
         </span>
     </span>
 
@@ -98,8 +98,18 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>1.判断字符串是否为空</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Shell</span></span><br><span class="line"></span><br><span class="line">STRING=</span><br><span class="line"></span><br><span class="line">if [ -z "$STRING" ]; then # 如果STRING字符串为空</span><br><span class="line">    echo "STRING is empty"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ -n "$STRING" ]; then # 如果STRING字符串不为空</span><br><span class="line">    echo "STRING is not empty"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure> 
+  <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="转义与原生字符串"><a href="#转义与原生字符串" class="headerlink" title="转义与原生字符串"></a>转义与原生字符串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"abc123\n"</span></span><br><span class="line">temp1 = <span class="string">r"abc123\n"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \n 换行</span></span><br><span class="line">print(temp)</span><br><span class="line"><span class="comment"># 输出为：</span></span><br><span class="line"><span class="comment"># abc123</span></span><br><span class="line"><span class="comment"># 空行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印原生字符串,字符串前面加r或R</span></span><br><span class="line">print(temp1)  <span class="comment"># 输出为abc123\n</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="split-方法"><a href="#split-方法" class="headerlink" title="split()方法"></a>split()方法</h1><p>语法：<br>str.split(str=””, num=string.count(str))<br>str – 分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等。<br>num – 分割次数。默认为 -1, 即分隔所有。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"></span><br><span class="line">str = <span class="string">"Line1-abcdef \nLine2-abc \nLine4-abcd"</span>;</span><br><span class="line"><span class="keyword">print</span> (str.split( ))       <span class="comment"># 以空格为分隔符，包含 \n; 输出['Line1-abcdef', 'Line2-abc', 'Line4-abcd']</span></span><br><span class="line"><span class="keyword">print</span> (str.split(<span class="string">' '</span>, <span class="number">1</span> )) <span class="comment"># 以空格为分隔符，分隔成两个; 输出['Line1-abcdef', '\nLine2-abc \nLine4-abcd']</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="strip-方法"><a href="#strip-方法" class="headerlink" title="strip()方法"></a>strip()方法</h1><p>语法：<br>str.strip([chars])<br>用于移除字符串头尾指定的字符（默认为空格）或字符序列。<br>只能删除开头或是结尾的字符，不能删除中间部分的字符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除首尾的字符串，不删除中间的字符。</span></span><br><span class="line">str = <span class="string">"*****this is **string** example....wow!!!*****"</span></span><br><span class="line"><span class="keyword">print</span> (str.strip( <span class="string">'*'</span> ))  <span class="comment"># 指定字符串 *  输出this is **string** example....wow!!!</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、strip() 处理的时候，如果不带参数，默认是清除两边的空白符，例如：/n, /r, /t, ' ')。</span></span><br><span class="line"><span class="comment"># 2、strip() 带有参数的时候，这个参数可以理解一个要删除的字符的列表，是否会删除的前提是</span></span><br><span class="line"><span class="comment"># 从字符串最开头和最结尾是不是包含要删除的字符，如果有就会继续处理，没有的话是不会删除中间的字符的。</span></span><br><span class="line">str = <span class="string">"123abcrunoob321"</span></span><br><span class="line"><span class="keyword">print</span> (str.strip( <span class="string">'12'</span> ))  <span class="comment"># 字符序列为 12  输出3abcrunoob3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 删除的是首尾含有的字符的列表，无需一定要按照顺序</span></span><br><span class="line">str = <span class="string">'123132231213321312==321312213231123132'</span></span><br><span class="line">print(str.strip(<span class="string">'123'</span>))  <span class="comment"># 输出==</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Istrip-方法"><a href="#Istrip-方法" class="headerlink" title="Istrip()方法"></a>Istrip()方法</h1><p>语法：<br>截除字符串左边的空格或指定字符</p>
+<pre><code class="python">a = <span class="string">"    yqyqang"</span>
+print(a.lstrip())  <span class="comment"># 输出yqyqang</span></code></pre>
+ 
       <!-- reward -->
       
     </div>
@@ -163,7 +173,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/07/Shell%E4%B8%ADif%E7%9A%84%E5%90%84%E7%A7%8D%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/08/%E5%AD%97%E7%AC%A6%E4%B8%B2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -174,19 +184,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/11/08/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E5%8F%8A%E6%95%B0%E5%AD%A6%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-nav-link">
+      <a href="/2020/11/10/Pymol%E7%94%BB%E5%BB%8A/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            数学运算及数学表达式
+            Pymol画廊
           
         </div>
       </a>
     
     
-      <a href="/2020/11/07/echo/" class="article-nav-link">
+      <a href="/2020/11/08/%E5%85%B3%E9%94%AE%E5%AD%97/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">echo</div>
+        <div class="article-nav-title">关键字</div>
       </a>
     
   </nav>
